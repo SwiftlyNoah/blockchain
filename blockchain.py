@@ -13,7 +13,12 @@ class Blockchain:
         self.chain = []
         self.create_genesis_block()
         self.transaction_pool = []
-        self.users = {}
+        self.users = {
+            'god': {
+                'account_value': 10000,
+                'transactions': []
+            }
+        }
         
     def create_genesis_block(self):
         genesis_block = {
@@ -48,9 +53,6 @@ class Blockchain:
     
     def complete_transactions(self, transactions):
         for transaction in transactions:
-            # Mark the transaction as complete
-            transaction['status'] = 'complete'
-
             # Update the recipient's account value and transaction history
             recipient = transaction['recipient']
             amount = transaction['amount']
@@ -123,11 +125,6 @@ class Blockchain:
         }
         return True, "Username registered successfully"
     
-    def get_account_value(self, username):
-        if username in self.users:
-            return True, self.users[username]['account_value']
-        return False, f"No user found with username: {username}"
-    
     def add_transaction(self, transaction):
         sender = transaction['sender']
         recipient = transaction['recipient']
@@ -143,13 +140,15 @@ class Blockchain:
         timestamp = str(datetime.datetime.now())
         transaction['timestamp'] = timestamp
         txid = self.hash_transaction(transaction)
-        transaction['status'] = 'pending'
         transaction['id'] = txid
         self.transaction_pool.append(transaction)
         self.users[sender]['account_value'] -= amount
         self.users[sender]['transactions'].append(transaction)
         self.users[recipient]['transactions'].append(transaction)
-        return True, f"Transaction {txid} succesfully added to pool"
+        if sender == 'god':
+            return True, f"Transaction {txid} succesfully added to pool. {recipient} robbed {amount} NoahCoin from god"
+        else:
+            return True, f"Transaction {txid} succesfully added to pool"
     
     def get_transaction_status(self, transaction_id):
         # First, check if the transaction is in the transaction pool
@@ -209,6 +208,9 @@ class Blockchain:
 
 
     def get_account_value(self, username):
+        if username == 'god':
+            return True, "God is all-powerful, all-seeing, and all-wealthy"
+
         # Check if the user exists
         if username not in self.users:
             return False, f"No user found with username: {username}"
@@ -239,6 +241,7 @@ def mine_block():
     response = {
         'message': 'Congratulations, you just mined a block!',
         'block_number': block['block_number'],
+        'transactions': block['transactions'],
         'nonce': block['nonce'],
         'hash': block['hash'],
         'previous_hash': block['previous_hash']
@@ -306,18 +309,22 @@ def print_money():
     if not username or amount is None:
         return jsonify({'message': 'Username and amount are required'}), 400
 
-    try:
-        amount = float(amount)
-    except ValueError:
-        return jsonify({'message': 'Invalid amount format'}), 400
+    amount = float(amount)
+    transaction = {
+        'amount': amount,
+        'sender': 'god',
+        'recipient': username
+    }
 
-    success, message = blockchain.print_money(username, amount)
+    success, message = blockchain.add_transaction(transaction)
     return jsonify({'message': message}), (200 if success else 400)
 
 @app.route('/get_user_account_values', methods=['GET'])
 def get_user_account_values():
     try:
-        user_account_values = {username: user['account_value'] for username, user in blockchain.users.items()}
+        users_minus_god = blockchain.users.copy()
+        del users_minus_god['god']
+        user_account_values = {username: user['account_value'] for username, user in users_minus_god.items()}
         return jsonify(user_account_values), 200
     except Exception as e:
         return jsonify({'message': str(e)}), 500
