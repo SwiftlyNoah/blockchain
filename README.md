@@ -1,46 +1,27 @@
-# Blockchain Application
-
-This application demonstrates a basic implementation of a blockchain. It includes functionalities to create a new block, mine blocks, display the entire chain, and verify the chain's integrity.
-
-## Setup Instructions
-
-Before running the application, ensure you have the following prerequisites:
-
-1. Download and install Python, Anaconda, Flask, and Postman.
-2. Open Anaconda Navigator.
-3. Launch Spyder (or your preferred Python IDE).
-4. Set up your project directory structure.
-5. Save your blockchain implementation in a file named `blockchain.py`.
-
-## Running the Application
+# Noah's Blockchain (NoahCoin)
 
 To start the blockchain application:
-
-1. Navigate to your project directory in the terminal.
+1. Navigate to the project directory in the terminal.
 2. Run the command `python blockchain.py` to start the Flask server.
-3. The server will start on `localhost` at port `5000`.
+3. The server will start on `localhost` and on your local network at port `5001`.
+
+## Features/Functionality
+- Create user
+- Create transaction
+- View transaction status (in pool/mined)
+- Cancel transaction
+- Mine block - find a golden hash and process transactions in the pool
+- Get chain
+- Confirm chain validity - ensure the chain is valid (it always should be because their you are the honorable central authority)
+- Get transaction pool
+- Get user account values (see who has all of the NoahCoin)
+- Get account info (account value and transactions for one specific user)
+- A fixed amount of currency (10k) that begins in an account known as god
+- A fixed hash difficulty (five leading zeroes)
+- Print money (add some NoahCoin to a users account from god)
 
 ## Using Postman to Interact with the Blockchain
-
 Postman can be used to interact with the blockchain via HTTP requests. Here are the available endpoints and how to use them:
-
-### Mine a New Block
-
-- **Endpoint:** `GET /mine_block`
-- **Purpose:** This endpoint mines a new block.
-- **Usage:** Send a GET request to `http://localhost:5000/mine_block`. The response includes details of the mined block.
-
-### Get the Full Blockchain
-
-- **Endpoint:** `GET /get_chain`
-- **Purpose:** Retrieves the entire blockchain.
-- **Usage:** Send a GET request to `http://localhost:5000/get_chain`. This will return the current blockchain and its length.
-
-### Confirm Blockchain Validity
-
-- **Endpoint:** `GET /confirm_chain`
-- **Purpose:** Checks if the blockchain is valid.
-- **Usage:** Send a GET request to `http://localhost:5000/confirm_chain`. The response will indicate whether the blockchain is valid.
 
 ## Interacting with the Blockchain
 
