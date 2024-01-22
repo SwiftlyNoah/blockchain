@@ -21,8 +21,4 @@ To start the blockchain application:
 - Print money (add some NoahCoin to a users account from god)
 
 ## Using Postman to Interact with the Blockchain
-Postman can be used to interact with the blockchain via HTTP requests. Here are the available endpoints and how to use them:
-
-## Interacting with the Blockchain
-
-After sending requests via Postman, you will receive JSON responses that include blockchain data and confirmation messages. This allows you to visually verify the operations performed on the blockchain.
+Postman can be used to interact with the NoahCoin blockchain via HTTP requests. Download the [Postman Collection json file](blockchain.postman_collection.json) and open it in the Postman app.
