@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "da9c628e-59ad-4441-86d5-bb4995c5a238",
+		"name": "Blockchain",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29174228"
+	},
+	"item": [
+		{
+			"name": "make_wallet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/make_wallet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"make_wallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_chain",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/get_chain",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"get_chain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "confirm_chain",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/confirm_chain",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"confirm_chain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace_chain",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5002/replace_chain",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"replace_chain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "connect_node",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nodes\": [\n        \"http://localhost:5001\",\n        \"http://localhost:5003\",\n        \"http://localhost:5004\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5002/connect_node",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"connect_node"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mine_block",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/mine_block",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"mine_block"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new_transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"sender\": \"xxx\",\n    \"public_key\": \"xxx\",\n    \"signature\": \"xxx\",\n    \"recipient\": \"22CrG4hSL3UPvzGumC5aTBD8ujmn\",\n    \"amount\": 0.005\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/new_transaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"new_transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new_transaction_from_node",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recipient\": \"22CrG4hSL3UPvzGumC5aTBD8ujmn\",\n    \"amount\": 0.005\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/new_transaction_from_node",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"new_transaction_from_node"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction_status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/transaction_status/0000000000000000000000000000000000000000000000000000000000000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"transaction_status",
+						"0000000000000000000000000000000000000000000000000000000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancel_transaction",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/cancel_transaction/0000000000000000000000000000000000000000000000000000000000000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"cancel_transaction",
+						"0000000000000000000000000000000000000000000000000000000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_transaction_pool",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/get_transaction_pool",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"get_transaction_pool"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/get_balance?address=22CrG4hSL3UPvzGumC5aTBD8ujmn",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"get_balance"
+					],
+					"query": [
+						{
+							"key": "address",
+							"value": "22CrG4hSL3UPvzGumC5aTBD8ujmn"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
