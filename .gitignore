@@ -1,1 +1,6 @@
 /env
+__pycache__/
+*.py[cod]
+
+# i used this to generate my wallet :)
+noahcoin_wallet.py
